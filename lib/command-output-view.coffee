@@ -199,11 +199,11 @@ class CommandOutputView extends View
     addClass @statusIcon, 'status-error'
 
   getCwd: ->
-    extFile = extname atom.project.path
+    extFile = extname atom.project.getPaths()[0]
 
     if extFile == ""
-      if atom.project.path
-        projectDir = atom.project.path
+      if atom.project.getPaths()[0]
+        projectDir = atom.project.getPaths()[0]
       else
         if process.env.HOME
           projectDir = process.env.HOME
@@ -212,7 +212,7 @@ class CommandOutputView extends View
         else
           projectDir = '/'
     else
-      projectDir = dirname atom.project.path
+      projectDir = dirname atom.project.getPaths()[0]
 
     @cwd or projectDir or @userHome
 
